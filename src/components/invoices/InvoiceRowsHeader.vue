@@ -1,13 +1,16 @@
 <template>
     <thead>
         <tr>
+            <th> S.No </th>
             <th>{{ $t('item') }}</th>
-            <th>{{ $t('quantity') }}</th>
+            <th>Description</th>
+            <th>HSN</th>
+            <th>Qty</th>
             <th>{{ $t('unit') }}</th>
             <th>{{ $t('price') }}</th>
-            <th v-for="tax in taxes" :key="tax.id">
+            <!-- <th v-for="tax in taxes" :key="tax.id">
                 {{ tax.label }} %
-            </th>
+            </th> -->
             <th class="text-right">{{ $t('sum') }}</th>
         </tr>
     </thead>

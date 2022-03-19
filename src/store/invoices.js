@@ -6,11 +6,14 @@ import Errors from '@/utils/errors';
 
 function getInvoice(invoiceId) {
   return Invoice.query()
-    .with(['client', 'client_fields', 'team_fields', 'rows.taxes'])
+    .with(['client', 'client_fields', 'team_fields', 'rows.taxes', 'consignee'])
     .with('rows', query => query.orderBy('order', 'asc'))
     .find(invoiceId);
 }
-
+function getKey(key, isConsignee) {
+  const mapKey = isConsignee ? `consignee_${key}` : `client_${key}`;
+  return mapKey;
+}
 export default {
   namespaced: true,
   state: {
@@ -62,6 +65,7 @@ export default {
       return invoice.id;
     },
     invoiceProps(store, payload) {
+      console.log(`invoiceId : ${payload.invoiceId}`);
       return Invoice.update({
         where: payload.invoiceId,
         data: payload.props,
@@ -71,6 +75,7 @@ export default {
       const clientProps = pick(payload.props, {
         bank_account_id: 'bank_account_id',
         client_name: 'company_name',
+        client_gstin: 'company_gstin',
         client_address: 'company_address',
         client_postal_code: 'company_postal_code',
         client_country: 'company_country',
@@ -79,6 +84,7 @@ export default {
         client_email: 'invoice_email',
         currency: 'currency',
       });
+
       const invoice = getInvoice(payload.invoiceId);
 
       if (Object.keys(clientProps).length > 0 && invoice.client_id) {
@@ -92,6 +98,7 @@ export default {
       const teamProps = pick(payload.props, {
         late_fee: 'invoice_late_fee',
         from_name: 'company_name',
+        from_gstin: 'company_gstin',
         from_address: 'company_address',
         from_postal_code: 'company_postal_code',
         from_city: 'company_city',
@@ -120,7 +127,8 @@ export default {
       }
 
       commit('clearErrors');
-      return InvoiceService.updateInvoice(getInvoice(payload.invoiceId))
+      const invoice = getInvoice(payload.invoiceId);
+      return InvoiceService.updateInvoice(invoice)
         .catch(err => commit('setErrors', err.errors));
     },
     async deleteInvoice(store, invoice) {
@@ -140,34 +148,42 @@ export default {
     },
     prefillClient({ dispatch, rootGetters }, payload) {
       const client = payload.client;
-      dispatch('invoiceClientFields/removeInvoiceClientFields', payload.invoiceId, { root: true });
+      dispatch('invoiceClientFields/removeInvoiceClientFields',
+        {
+          invoiceId: payload.invoiceId,
+          isConsignee: payload.isConsignee,
+        }, { root: true });
 
       client.fields.forEach((field) => {
         dispatch('invoiceClientFields/addInvoiceClientField', {
           invoiceId: payload.invoiceId,
           props: {
+            is_consignee: payload.isConsignee,
             label: field.label,
             value: field.value,
             client_field_id: field.id,
           },
         }, { root: true });
       });
+      const isConsignee = payload.isConsignee;
+      const updateProps = {
+        [getKey('id', isConsignee)]: client.id,
+        [getKey('gstin', isConsignee)]: client.company_gstin,
+        [getKey('name', isConsignee)]: client.company_name,
+        [getKey('address', isConsignee)]: client.company_address,
+        [getKey('postal_code', isConsignee)]: client.company_postal_code,
+        [getKey('city', isConsignee)]: client.company_city,
+        [getKey('county', isConsignee)]: client.company_county,
+        [getKey('country', isConsignee)]: client.company_country,
+        [getKey('email', isConsignee)]: client.invoice_email,
+        bank_name: client.bank_account ? client.bank_account.bank_name : null,
+        bank_account_no: client.bank_account ? client.bank_account.bank_account_no : null,
+        currency: client.currency || rootGetters['teams/team'].currency || 'INR',
+      };
 
       return dispatch('updateInvoice', {
         invoiceId: payload.invoiceId,
-        props: {
-          client_id: client.id,
-          client_name: client.company_name,
-          client_address: client.company_address,
-          client_postal_code: client.company_postal_code,
-          client_city: client.company_city,
-          client_county: client.company_county,
-          client_country: client.company_country,
-          client_email: client.invoice_email,
-          currency: client.currency || rootGetters['teams/team'].currency || 'USD',
-          bank_name: client.bank_account ? client.bank_account.bank_name : null,
-          bank_account_no: client.bank_account ? client.bank_account.account_no : null,
-        },
+        props: updateProps,
       });
     },
     prefillInvoice({ dispatch, getters, rootGetters }, payload) {
@@ -181,7 +197,7 @@ export default {
           .format('YYYY-MM-DD'),
         number: generateInvoiceNumber(getters.all),
         late_fee: team.invoice_late_fee || 0.5,
-        currency: team.currency || 'USD',
+        currency: team.currency || 'INR',
       };
 
       return dispatch('updateInvoice', {
@@ -206,6 +222,7 @@ export default {
 
       const props = {
         from_name: team.company_name,
+        from_gstin: team.company_gstin,
         from_address: team.company_address,
         from_postal_code: team.company_postal_code,
         from_city: team.company_city,

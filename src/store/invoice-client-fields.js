@@ -19,8 +19,8 @@ export default {
         invoiceId: payload.invoiceId,
       }, { root: true });
     },
-    async removeInvoiceClientFields(store, invoiceId) {
-      return InvoiceClientField.delete(field => field.invoice_id === invoiceId);
+    async removeInvoiceClientFields(store, { invoiceId, isConsignee }) {
+      return InvoiceClientField.delete(field => field.invoice_id === invoiceId && field.is_consignee === isConsignee);
     },
     async addInvoiceClientField(store, payload) {
       const field = await InvoiceClientField.createNew();

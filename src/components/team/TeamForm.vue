@@ -23,14 +23,17 @@
                         <AppInput :value="team.company_name" @change="updateProp({ company_name: $event })"
                                   :label="$t('general.company_name')" field="company_name" :errors="errors"
                                   class="col-12"/>
+                        <AppInput :value="team.company_gstin" @change="updateProp({ company_gstin: $event })"
+                                  label="GSTIN " field="company_gstin" :errors="errors"
+                                  class="col-12"/>
                         <AppInput :value="team.contact_email" @change="updateProp({ contact_email: $event })"
                                   :label="$t('general.contact_email')" field="contact_email" :errors="errors"
                                   class="col-12"/>
                         <AppInput :value="team.contact_phone" @change="updateProp({ contact_phone: $event })"
                                   :label="$t('general.contact_phone')" field="contact_phone" :errors="errors"
                                   class="col-12"/>
-                        <AppInput :value="team.website" @change="updateProp({ website: $event })"
-                                  :label="$t('general.website')" field="website" :errors="errors" class="col-12"/>
+                        <!-- <AppInput :value="team.website" @change="updateProp({ website: $event })"
+                                  :label="$t('general.website')" field="website" :errors="errors" class="col-12"/> -->
                     </div>
 
                     <TeamFields class="row" :team="team"/>

@@ -8,21 +8,34 @@
                          @change="updateProp({ from_name: $event })"/>
             <i class="material-icons md-18 ml-2 pointer d-print-none" @click="editTeam">edit</i>
         </strong>
+        <div class="break-line">
+          <span> GSTIN: </span>
+          <AppEditable :value="invoice.from_gstin"
+                    suffix=""
+                    placeholder="GST IN"
+                    @change="updateProp({ from_gstin : $event })"
+          />
+        </div>
+
         <AppEditable :value="invoice.from_address"
-                     suffix=", "
+                     suffix=""
                      :placeholder="$t('address')"
+                     class="break-line"
                      @change="updateProp({ from_address: $event })"/>
+
+        <AppError :errors="errors" field="from_address"/>
+
+        <AppEditable :value="invoice.from_city"
+                     suffix="- "
+                     :placeholder="$t('city')"
+                     @change="updateProp({ from_city: $event })"/>
         <AppEditable :value="invoice.from_postal_code"
                      :placeholder="$t('postal_code')"
                      class="break-line"
                      @change="updateProp({ from_postal_code: $event })"/>
-        <AppError :errors="errors" field="from_address"/>
+        <AppError :errors="errors" field="from_city"/>
         <AppError :errors="errors" field="from_postal_code"/>
 
-        <AppEditable :value="invoice.from_city"
-                     suffix=", "
-                     :placeholder="$t('city')"
-                     @change="updateProp({ from_city: $event })"/>
         <AppEditable :value="invoice.from_county"
                      suffix=", "
                      :placeholder="$t('county')"
@@ -31,7 +44,6 @@
                      :placeholder="$t('country')"
                      class="break-line"
                      @change="updateProp({ from_country: $event })"/>
-        <AppError :errors="errors" field="from_city"/>
         <AppError :errors="errors" field="from_county"/>
         <AppError :errors="errors" field="from_country"/>
 

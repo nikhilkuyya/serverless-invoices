@@ -9,6 +9,7 @@ export default class InvoiceClientField extends Model {
     return {
       id: this.attr(() => uuidv4()),
       invoice_id: this.attr(null),
+      is_consignee: this.attr(false),
       client_field_id: this.attr(null),
       label: this.attr(''),
       value: this.attr(''),

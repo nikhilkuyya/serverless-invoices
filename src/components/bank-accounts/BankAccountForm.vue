@@ -12,10 +12,22 @@
                       field="bank_name"
                       :errors="errors"
                       class="col-sm-10"/>
-            <AppTextarea :value="bankAccount.account_no"
-                         @change="updateProp({ account_no: $event })"
+            <AppInput :value="bankAccount.bank_account_no"
+                         @change="updateProp({ bank_account_no: $event })"
                          :label="$t('account_no')"
-                         field="account_no"
+                         field="bank_account_no"
+                         :errors="errors"
+                         class="col-12"/>
+            <AppInput :value="bankAccount.bank_ifsc_code"
+                      @change="updateProp({ bank_ifsc_code : $event })"
+                      label="IFSC Code"
+                      field="bank_ifsc_code"
+                      :errors="errors"
+                      class="col-sm-10"/>
+            <AppTextarea :value="bankAccount.bank_description"
+                         @change="updateProp({ bank_description: $event })"
+                         label="Bank Description"
+                         field="bank_description"
                          :errors="errors"
                          class="col-12"/>
         </div>

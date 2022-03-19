@@ -13,38 +13,32 @@
     <tr class="text-right">
         <th :colspan="colspan">
             {{ $t('total') }}
-            <AppEditable :value="invoice.currency"
-                         :errors="errors"
-                         field="currency"
-                         :placeholder="$t('add_currency')"
-                         @change="updateProp({ currency: $event })"/>
+            INR
         </th>
         <th class="text-nowrap">{{ invoice.total | currency }}</th>
     </tr>
     </tfoot>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-import AppEditable from '../form/AppEditable';
+// import { mapGetters } from 'vuex';
 import { formatDate } from '../../filters/date.filter';
 import { formatCurrency } from '../../filters/currency.filter';
 
 export default {
   i18nOptions: { namespaces: 'invoice-totals' },
   props: ['invoice', 'errors'],
-  components: {
-    AppEditable,
-  },
+  components: {},
   filters: {
     date: formatDate,
     currency: formatCurrency,
   },
   computed: {
-    ...mapGetters({
-      taxes: 'invoiceRows/taxes',
-    }),
+    // ...mapGetters({
+    //   taxes: 'invoiceRows/taxes',
+    // }),
     colspan() {
-      return 4 + this.taxes.length;
+      // return 5 + this.taxes.length;
+      return 7;
     },
   },
   methods: {

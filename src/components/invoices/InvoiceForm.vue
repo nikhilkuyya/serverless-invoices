@@ -4,15 +4,23 @@
             <div class="card bg-base dp--02 invoice-box" v-if="invoice">
                 <div class="card-body">
                     <div class="row mb-5">
-                        <TeamLogo class="col-4" :errors="errors"/>
+                        <InvoiceCompanyDetails :invoice="invoice" :errors="errors" @update="updateProp"
+                                               class="col-6 "/>
+                        <!-- <TeamLogo class="col-4" :errors="errors"/> -->
                         <InvoiceHeader :invoice="invoice" :errors="errors" @update="updateProp"
-                                       class="col-8 text-right mb-2"/>
+                                       class="col-6 text-right mb-2"/>
                     </div>
                     <div class="row">
-                        <InvoiceClientDetails :invoice="invoice" :errors="errors" @update="updateProp"
-                                              class="col-6"/>
-                        <InvoiceCompanyDetails :invoice="invoice" :errors="errors" @update="updateProp"
-                                               class="col-6 text-right"/>
+                        <div class="col-6">
+                          <span> <strong>Client</strong> </span>
+                          <InvoiceClientDetails :invoice="invoice" :client="invoice.client" :errors="errors"  is-consignee="" @update="updateProp"
+                                               />
+                        </div>
+                        <div class="col-6 text-right mb-2">
+                          <span> <strong>Consignee </strong></span>
+                          <InvoiceClientDetails :invoice="invoice" :errors="errors" :client="invoice.consignee" is-consignee="true" @update="updateProp"
+                                              />
+                        </div>
                     </div>
                     <div class="row mt-3">
                         <AppEditable :value="invoice.notes"
@@ -53,7 +61,7 @@ import InvoiceContactDetails from '@/components/invoices/InvoiceContactDetails';
 import InvoiceHeader from '@/components/invoices/InvoiceHeader';
 import InvoiceTotals from '@/components/invoices/InvoiceTotals';
 import AppEditable from '@/components/form/AppEditable';
-import TeamLogo from '@/components/team/TeamLogo';
+// import TeamLogo from '@/components/team/TeamLogo';
 import InvoiceRowsHeader from '@/components/invoices/InvoiceRowsHeader';
 import InvoiceAddRowBtn from '@/components/invoices/InvoiceAddRowBtn';
 
@@ -61,7 +69,7 @@ export default {
   i18nOptions: { namespaces: 'invoice-form' },
   components: {
     InvoiceAddRowBtn,
-    TeamLogo,
+    // TeamLogo,
     InvoiceTotals,
     InvoiceHeader,
     InvoiceContactDetails,

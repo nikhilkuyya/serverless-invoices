@@ -13,6 +13,7 @@
                 class="search-popover__select"
                 v-show="isOpen"
                 ref="suggest"
+                v-bind:class="location"
                 :input-props="{placeholder: $t('suggest_placeholder'), class: 'form-control'}"
                 :suggestions="suggestions"
                 :value="query"
@@ -54,6 +55,7 @@ export default {
   props: {
     value: {},
     btnClass: {},
+    isLeft: {},
   },
   data() {
     return {
@@ -82,6 +84,12 @@ export default {
     },
     btnClasses() {
       return !this.value ? `text-muted ${this.btnClass}` : this.btnClass;
+    },
+    location() {
+      return {
+        left: !!this.isLeft,
+        right: !this.isLeft,
+      };
     },
   },
   methods: {
