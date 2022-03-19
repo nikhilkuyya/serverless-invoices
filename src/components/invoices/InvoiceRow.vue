@@ -1,6 +1,13 @@
 <template>
     <tr>
         <td>
+            <AppEditable :value="row.serial_no"
+                         :errors="errors"
+                         :field="`rows.${index}.item`"
+                         :placeholder="$t('S.No.')"
+                         @change="updateProp({ serial_no: $event })"/>
+        </td>
+        <td>
             <AppEditable :value="row.item"
                          :errors="errors"
                          :field="`rows.${index}.item`"
@@ -8,10 +15,24 @@
                          @change="updateProp({ item: $event })"/>
         </td>
         <td>
+            <AppEditable :value="row.description"
+                         :errors="errors"
+                         :field="`rows.${index}.item`"
+                         placeholder="Enter Description"
+                         @change="updateProp({ description: $event })"/>
+        </td>
+        <td>
+            <AppEditable :value="`${row.hsn_code}`"
+                         :errors="errors"
+                         :field="`rows.${index}.item`"
+                         placeholder="Enter HSN Code"
+                         @change="updateProp({ hsn_code : $event })"/>
+        </td>
+        <td>
             <AppEditable :value="row.quantity"
                          :errors="errors"
                          :field="`rows.${index}.quantity`"
-                         :placeholder="$t('enter_quantity')"
+                         placeholder="Enter Qty"
                          @change="updateProp({ quantity: $event })"/>
         </td>
         <td>
@@ -28,14 +49,14 @@
                          :placeholder="$t('enter_price')"
                          @change="updateProp({ price: $event })"/>
         </td>
-        <td v-for="(tax, taxIndex) in row.taxes" :title="tax.label">
+        <!-- <td v-for="(tax, taxIndex) in row.taxes" :title="tax.label">
             <AppEditable v-if="tax.row_id"
                          :value="tax.value | currency"
                          :errors="errors"
                          :field="`rows.${index}.taxes.${taxIndex}.value`"
                          :placeholder="$t('enter_tax')"
                          @change="updateTaxProp({ value: $event }, tax)"/>
-        </td>
+        </td> -->
         <td class="text-right position-relative">
             {{ (row.quantity * row.price) | currency }}
             <button class="btn btn-sm d-print-none invoice__row-control"
