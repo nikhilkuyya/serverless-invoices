@@ -34,6 +34,10 @@ const routes = [
     name: 'invoice-print',
     component: () => import(/* webpackChunkName: "invoice" */ '@/views/InvoicePrint.vue'),
   },
+  {
+    path: '**',
+    redirect: 'invoices',
+  },
 ];
 
 const router = new Router({
