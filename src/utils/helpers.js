@@ -75,7 +75,7 @@ export function generateInvoiceNumber(invoices) {
   const date = dayjs()
     .format('YYYY');
   const number = invoices.length + 1;
-  return `${date}-${number}`;
+  return `${date}-${number.toString().padStart(3,'0')}`;
 }
 
 export function download(data, filename, type) {

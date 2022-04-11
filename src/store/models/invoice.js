@@ -31,6 +31,7 @@ export default class Invoice extends Model {
       from_phone: this.attr(''),
       bank_name: this.attr(''),
       bank_account_no: this.attr(''),
+      bank_ifsc_code: this.attr(''),
       client_name: this.attr(''),
       client_gstin: this.attr(''),
       client_address: this.attr(''),

@@ -1,7 +1,7 @@
 {
   "title": "Pangakonto",
   "bank_name": "Panga nimi",
-  "account_no": "Rekvisiidid",
+  "bank_account_no": "Rekvisiidid",
   "loading": "Laeb",
   "done": "Tehtud",
   "create": "Loo",

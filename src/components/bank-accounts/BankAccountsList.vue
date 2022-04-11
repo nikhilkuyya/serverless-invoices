@@ -7,6 +7,7 @@
                 <tr>
                     <th>{{ $t('bank') }}</th>
                     <th>{{ $t('bank_account_details') }}</th>
+                    <th>Bank IFSC Code</th>
                     <th class="text-right"></th>
                 </tr>
                 </thead>
@@ -14,7 +15,8 @@
                 <tr v-for="account in bankAccounts" :key="account.id"
                     @click="onSelect(account)" :class="{pointer: $listeners.select }">
                     <td>{{ account.bank_name }}</td>
-                    <td>{{ account.account_no }}</td>
+                    <td>{{ account.bank_account_no }}</td>
+                    <td>{{ account.bank_ifsc_code }}</td>
                     <td class="text-right">
                         <i class="material-icons md-18 p-1 pointer"
                            @click.stop="openBankAccountModal(account)">
@@ -33,6 +35,7 @@
         </EmptyState>
     </div>
 </template>
+
 <script>
 import { mapGetters } from 'vuex';
 import { formatDate } from '@/filters/date.filter';

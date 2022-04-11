@@ -1,7 +1,7 @@
 {
   "title": "Bank account",
   "bank_name": "Bank name",
-  "account_no": "Bank account details",
+  "bank_account_no": "Bank account details",
   "loading": "Loading",
   "done": "Done",
   "create": "Create",

@@ -178,6 +178,7 @@ export default {
         [getKey('email', isConsignee)]: client.invoice_email,
         bank_name: client.bank_account ? client.bank_account.bank_name : null,
         bank_account_no: client.bank_account ? client.bank_account.bank_account_no : null,
+        bank_ifsc_code: client.bank_ifsc_code ? client.bank_account.bank_ifsc_code : null,
         currency: client.currency || rootGetters['teams/team'].currency || 'INR',
       };
 
