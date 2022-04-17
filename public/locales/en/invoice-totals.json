@@ -1,5 +1,6 @@
 {
     "subtotal": "Subtotal",
     "total": "Total",
-    "add_currency": "Add currency"
+    "add_currency": "Add currency",
+    "tax_total":"Tax Total"
 }

@@ -4,7 +4,7 @@
             <AppEditable :value="row.serial_no"
                          :errors="errors"
                          :field="`rows.${index}.item`"
-                         :placeholder="$t('S.No.')"
+                         :placeholder="$t('serial_no')"
                          @change="updateProp({ serial_no: $event })"/>
         </td>
         <td>
@@ -18,21 +18,21 @@
             <AppEditable :value="row.description"
                          :errors="errors"
                          :field="`rows.${index}.item`"
-                         placeholder="Enter Description"
+                         :placeholder="$t('enter_description')"
                          @change="updateProp({ description: $event })"/>
         </td>
         <td>
             <AppEditable :value="`${row.hsn_code}`"
                          :errors="errors"
                          :field="`rows.${index}.item`"
-                         placeholder="Enter HSN Code"
+                         :placeholder="$t('enter_hsn')"
                          @change="updateProp({ hsn_code : $event })"/>
         </td>
         <td>
             <AppEditable :value="row.quantity"
                          :errors="errors"
                          :field="`rows.${index}.quantity`"
-                         placeholder="Enter Qty"
+                         :placeholder="$t('enter_qty')"
                          @change="updateProp({ quantity: $event })"/>
         </td>
         <td>
@@ -57,8 +57,8 @@
                          :placeholder="$t('enter_tax')"
                          @change="updateTaxProp({ value: $event }, tax)"/>
         </td> -->
-        <td class="text-right position-relative">
-            {{ (row.quantity * row.price) | currency }}
+        <td class="text-right position-relative currency-readable">
+            {{ (row.quantity * row.price) | dineroCurrency }}
             <button class="btn btn-sm d-print-none invoice__row-control"
                     @click="removeRow(row)">
                 <i class="material-icons md-18 pointer">remove</i>
@@ -69,6 +69,7 @@
 
 <script>
 import { formatCurrency } from '../../filters/currency.filter';
+import { formatCurrencyWithDinero } from '../../filters/dineroCurrency.filter';
 import AppEditable from '../form/AppEditable';
 
 export default {
@@ -80,6 +81,7 @@ export default {
   },
   filters: {
     currency: formatCurrency,
+    dineroCurrency: formatCurrencyWithDinero,
   },
   methods: {
     updateProp(props) {

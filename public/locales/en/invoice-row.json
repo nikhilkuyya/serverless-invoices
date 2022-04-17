@@ -3,5 +3,9 @@
   "enter_quantity": "Enter quantity",
   "enter_unit": "Enter unit",
   "enter_price": "Enter price",
-  "enter_tax": "Enter tax"
+  "enter_tax": "Enter tax",
+  "serial_no":"S.No.",
+  "enter_description":"Enter Description",
+  "enter_hsn":"Enter HSN Code",
+  "enter_qty":"Enter Qty"
 }

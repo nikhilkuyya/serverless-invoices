@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>
-            {{ $t('invoice_title') }}
+            {{ $t('invoice_title') }} {{$t('invoice_number')}}
             <AppEditable :value="invoice.number"
                          :errors="errors"
                          field="number"
