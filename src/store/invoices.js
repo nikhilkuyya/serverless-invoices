@@ -65,7 +65,6 @@ export default {
       return invoice.id;
     },
     invoiceProps(store, payload) {
-      console.log(`invoiceId : ${payload.invoiceId}`);
       return Invoice.update({
         where: payload.invoiceId,
         data: payload.props,
