@@ -34,6 +34,10 @@ const routes = [
     name: 'invoice-print',
     component: () => import(/* webpackChunkName: "invoice" */ '@/views/InvoicePrint.vue'),
   },
+  {
+    path: '**',
+    redirect: 'invoices',
+  },
 ];
 
 const router = new Router({
@@ -42,15 +46,19 @@ const router = new Router({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  if (!to.query.hasOwnProperty('lang')) {
-    i18n.initialized.then(() => {
-      to.query.lang = i18n.i18next.language;
-      next(to);
-    });
-  } else {
-    next();
-  }
-});
+try {
+  router.beforeEach((to, from, next) => {
+    if (!to.query.hasOwnProperty('lang')) {
+      i18n.initialized.then(() => {
+        to.query.lang = i18n.i18next.language;
+        next(to);
+      }).catch(() => {});
+    } else {
+      next();
+    }
+  });
+} catch (err) {
+  console.log(err);
+}
 
 export default router;

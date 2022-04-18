@@ -9,7 +9,9 @@ export default class BankAccount extends Model {
     return {
       id: this.attr(() => uuidv4()),
       bank_name: this.attr(''),
-      account_no: this.attr(''),
+      bank_account_no: this.attr(''),
+      bank_ifsc_code: this.attr(''),
+      bank_description: this.attr(''),
       updated_at: this.attr(''),
       created_at: this.attr(''),
     };

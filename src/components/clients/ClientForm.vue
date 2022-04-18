@@ -28,6 +28,8 @@
                 <div class="row">
                     <AppInput :value="client.company_name" @change="updateProp({ company_name: $event })"
                               :label="$t('general.company_name')" field="company_name" :errors="errors" class="col-12"/>
+                    <AppInput :value="client.company_gstin" @change="updateProp({ company_gstin : $event })"
+                              label="Company GSTIN" field="company_gstin" :errors="errors" class="col-12" />
                     <AppInput :value="client.invoice_email" @change="updateProp({ invoice_email: $event })"
                               :label="$t('general.invoice_email')" field="invoice_email" :errors="errors"
                               class="col-sm-7"/>

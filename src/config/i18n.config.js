@@ -25,7 +25,9 @@ const initialized = i18next.init({
     checkWhitelist: true,
   },
 });
-initialized.then(() => app.$store.dispatch('language/initLanguage', i18next.language));
+initialized.then(() => app.$store.dispatch('language/initLanguage', i18next.language)).catch((err) => {
+  console.log(err);
+});
 
 const i18n = new VueI18Next(i18next, {
   // loadComponentNamespace: true,

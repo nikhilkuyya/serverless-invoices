@@ -9,7 +9,7 @@
     </tr>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
 import AppError from '@/components/form/AppError';
 
 export default {
@@ -18,11 +18,12 @@ export default {
     AppError,
   },
   computed: {
-    ...mapGetters({
-      taxes: 'invoiceRows/taxes',
-    }),
+    // ...mapGetters({
+    //   taxes: 'invoiceRows/taxes',
+    // }),
     colspan() {
-      return 5 + this.taxes.length;
+      // return 6 + this.taxes.length;
+      return 8;
     },
   },
   methods: {

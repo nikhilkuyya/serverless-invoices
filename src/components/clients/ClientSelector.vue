@@ -6,13 +6,14 @@
              :tabindex="tabindex"
              @click="toggleOpen">
             <span v-if="!value">{{ $t('client') }}</span>
-            <span v-else>{{ value }}</span>
+            <span v-else class="client-name">{{ value }}</span>
         </div>
         <div class="search-popover__overlay" v-if="isOpen" @click="toggleOpen"></div>
         <VueAutosuggest
                 class="search-popover__select"
                 v-show="isOpen"
                 ref="suggest"
+                v-bind:class="location"
                 :input-props="{placeholder: $t('suggest_placeholder'), class: 'form-control'}"
                 :suggestions="suggestions"
                 :value="query"
@@ -43,6 +44,15 @@
     </div>
 </template>
 
+<style lang="scss" scoped>
+.client-name {
+  line-height: 1.2em;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+
 <script>
 import { VueAutosuggest } from 'vue-autosuggest';
 
@@ -54,6 +64,7 @@ export default {
   props: {
     value: {},
     btnClass: {},
+    isLeft: {},
   },
   data() {
     return {
@@ -82,6 +93,12 @@ export default {
     },
     btnClasses() {
       return !this.value ? `text-muted ${this.btnClass}` : this.btnClass;
+    },
+    location() {
+      return {
+        left: !!this.isLeft,
+        right: !this.isLeft,
+      };
     },
   },
   methods: {

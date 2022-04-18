@@ -2,49 +2,54 @@
     <tfoot>
     <tr class="text-right">
         <td :colspan="colspan">{{ $t('subtotal') }}</td>
-        <td>{{ invoice.subTotal | currency }}</td>
+        <td class="currency-readable">{{ invoice.subTotal | dineroCurrency }}</td>
     </tr>
     <tr class="text-right" v-for="tax in invoice.taxes" :key="tax.label">
         <td :colspan="colspan">
             {{ tax.label }} ({{ tax.rate }}%)
         </td>
-        <td>{{ tax.total | currency }}</td>
+        <td class="currency-readable">{{ tax.total | dineroCurrency }}</td>
+    </tr>
+    <tr class="text-right">
+      <td :colspan="colspan">
+        {{ $t('tax_total')  }}
+      </td>
+      <td class="currency-readable">{{ taxTotal | dineroCurrency }}</td>
     </tr>
     <tr class="text-right">
         <th :colspan="colspan">
             {{ $t('total') }}
-            <AppEditable :value="invoice.currency"
-                         :errors="errors"
-                         field="currency"
-                         :placeholder="$t('add_currency')"
-                         @change="updateProp({ currency: $event })"/>
         </th>
-        <th class="text-nowrap">{{ invoice.total | currency }}</th>
+        <th class="text-nowrap currency-readable">{{ invoice.total | dineroCurrency }}</th>
     </tr>
     </tfoot>
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import AppEditable from '../form/AppEditable';
 import { formatDate } from '../../filters/date.filter';
 import { formatCurrency } from '../../filters/currency.filter';
+import { formatCurrencyWithDinero } from '../../filters/dineroCurrency.filter';
+
 
 export default {
   i18nOptions: { namespaces: 'invoice-totals' },
   props: ['invoice', 'errors'],
-  components: {
-    AppEditable,
-  },
+  components: {},
   filters: {
     date: formatDate,
     currency: formatCurrency,
+    dineroCurrency: formatCurrencyWithDinero,
   },
   computed: {
     ...mapGetters({
       taxes: 'invoiceRows/taxes',
     }),
+    taxTotal() {
+      return Object.values(this.invoice.taxes).reduce((taxTotal, taxObject) => { return taxTotal + taxObject.total; }, 0);
+    },
     colspan() {
-      return 4 + this.taxes.length;
+      // return 5 + this.taxes.length;
+      return 7;
     },
   },
   methods: {

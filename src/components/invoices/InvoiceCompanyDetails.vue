@@ -1,28 +1,41 @@
 <template>
     <div>
-        <strong class="break-line">
+        <span class="break-line company-name">
             <AppEditable :value="invoice.from_name"
                          :errors="errors"
                          field="from_name"
                          :placeholder="$t('your_company_name')"
                          @change="updateProp({ from_name: $event })"/>
             <i class="material-icons md-18 ml-2 pointer d-print-none" @click="editTeam">edit</i>
-        </strong>
+        </span>
+        <div class="break-line">
+          <span> GSTIN: </span>
+          <AppEditable :value="invoice.from_gstin"
+                    suffix=""
+                    placeholder="GST IN"
+                    @change="updateProp({ from_gstin : $event })"
+          />
+        </div>
+
         <AppEditable :value="invoice.from_address"
-                     suffix=", "
+                     suffix=""
                      :placeholder="$t('address')"
+                     class="break-line"
                      @change="updateProp({ from_address: $event })"/>
+
+        <AppError :errors="errors" field="from_address"/>
+
+        <AppEditable :value="invoice.from_city"
+                     suffix="- "
+                     :placeholder="$t('city')"
+                     @change="updateProp({ from_city: $event })"/>
         <AppEditable :value="invoice.from_postal_code"
                      :placeholder="$t('postal_code')"
                      class="break-line"
                      @change="updateProp({ from_postal_code: $event })"/>
-        <AppError :errors="errors" field="from_address"/>
+        <AppError :errors="errors" field="from_city"/>
         <AppError :errors="errors" field="from_postal_code"/>
 
-        <AppEditable :value="invoice.from_city"
-                     suffix=", "
-                     :placeholder="$t('city')"
-                     @change="updateProp({ from_city: $event })"/>
         <AppEditable :value="invoice.from_county"
                      suffix=", "
                      :placeholder="$t('county')"
@@ -31,7 +44,6 @@
                      :placeholder="$t('country')"
                      class="break-line"
                      @change="updateProp({ from_country: $event })"/>
-        <AppError :errors="errors" field="from_city"/>
         <AppError :errors="errors" field="from_county"/>
         <AppError :errors="errors" field="from_country"/>
 
@@ -44,6 +56,14 @@
                      @change="updateProp({ from_email: $event })"/>
     </div>
 </template>
+
+<style lang="scss">
+.company-name {
+  font-size: 1.5rem;
+  line-height: 1.2em;
+  font-weight: normal;
+}
+</style>
 <script>
 import AppError from '@/components/form/AppError';
 import InvoiceTeamFields from '@/components/invoices/InvoiceTeamFields';

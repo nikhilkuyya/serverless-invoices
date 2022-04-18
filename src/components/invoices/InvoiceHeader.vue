@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>
-            {{ $t('invoice_title') }}
+            {{ $t('invoice_title') }} {{$t('invoice_number')}}
             <AppEditable :value="invoice.number"
                          :errors="errors"
                          field="number"
@@ -22,7 +22,7 @@
                            :inline="true"
                            field="issued_at"/>
         </BModal>
-        <br>{{ $t('due_at') }}
+        <!-- <br>{{ $t('due_at') }}
         <span class="editable__item"
               v-b-modal.modal_due_at>{{ invoice.due_at | date('D. MMM YYYY', 'YYYY-MM-DD') }}</span>
         <BModal id="modal_due_at"
@@ -43,7 +43,7 @@
                      suffix="%"
                      field="late_fee"
                      :placeholder="$t('add_late_fee')"
-                     @change="updateProp({ late_fee: $event })"/>
+                     @change="updateProp({ late_fee: $event })"/> -->
     </div>
 </template>
 <script>

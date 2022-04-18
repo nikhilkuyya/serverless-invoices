@@ -1,11 +1,11 @@
 <template>
     <div>
-        <AppEditable :value="invoice.from_website"
+        <!-- <AppEditable :value="invoice.from_website"
                      :errors="errors"
                      field="from_website"
                      :placeholder="$t('add_website')"
                      class="break-line"
-                     @change="updateProp({ from_website: $event })"/>
+                     @change="updateProp({ from_website: $event })"/> -->
         <AppEditable :value="invoice.from_email"
                      :errors="errors"
                      field="from_email"
