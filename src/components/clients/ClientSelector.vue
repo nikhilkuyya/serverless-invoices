@@ -6,7 +6,7 @@
              :tabindex="tabindex"
              @click="toggleOpen">
             <span v-if="!value">{{ $t('client') }}</span>
-            <span v-else>{{ value }}</span>
+            <span v-else class="client-name">{{ value }}</span>
         </div>
         <div class="search-popover__overlay" v-if="isOpen" @click="toggleOpen"></div>
         <VueAutosuggest
@@ -43,6 +43,15 @@
         </VueAutosuggest>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.client-name {
+  line-height: 1.2em;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
 
 <script>
 import { VueAutosuggest } from 'vue-autosuggest';

@@ -13,11 +13,11 @@
                       :errors="errors"
                       class="col-sm-10"/>
             <AppInput :value="bankAccount.bank_account_no"
-                         @change="updateProp({ bank_account_no: $event })"
-                         :label="$t('account_no')"
-                         field="bank_account_no"
-                         :errors="errors"
-                         class="col-12"/>
+                      @change="updateProp({ bank_account_no: $event })"
+                      :label="$t('bank_account_no')"
+                      field="bank_account_no"
+                      :errors="errors"
+                      class="col-12"/>
             <AppInput :value="bankAccount.bank_ifsc_code"
                       @change="updateProp({ bank_ifsc_code : $event })"
                       label="IFSC Code"

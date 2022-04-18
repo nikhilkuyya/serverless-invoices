@@ -1,13 +1,13 @@
 <template>
     <div>
-        <strong class="break-line">
+        <span class="break-line company-name">
             <AppEditable :value="invoice.from_name"
                          :errors="errors"
                          field="from_name"
                          :placeholder="$t('your_company_name')"
                          @change="updateProp({ from_name: $event })"/>
             <i class="material-icons md-18 ml-2 pointer d-print-none" @click="editTeam">edit</i>
-        </strong>
+        </span>
         <div class="break-line">
           <span> GSTIN: </span>
           <AppEditable :value="invoice.from_gstin"
@@ -56,6 +56,14 @@
                      @change="updateProp({ from_email: $event })"/>
     </div>
 </template>
+
+<style lang="scss">
+.company-name {
+  font-size: 1.5rem;
+  line-height: 1.2em;
+  font-weight: normal;
+}
+</style>
 <script>
 import AppError from '@/components/form/AppError';
 import InvoiceTeamFields from '@/components/invoices/InvoiceTeamFields';

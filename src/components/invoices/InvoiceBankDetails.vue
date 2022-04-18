@@ -2,7 +2,7 @@
     <div>
         <strong>
             <AppEditable :value="invoice.bank_name"
-                         v-b-modal.bank_account_no
+                         v-b-modal.bank_name
                          :errors="errors"
                          :disabled="true"
                          field="bank_name"
@@ -15,6 +15,13 @@
                      :disabled="true"
                      field="bank_account_no"
                      :placeholder="$t('bank_account_no')"
+                     class="break-line"/>
+        <AppEditable :value="invoice.bank_ifsc_code"
+                     v-b-modal.bank_ifsc_code
+                     :errors="errors"
+                     :disabled="true"
+                     field="bank_ifsc_code"
+                     placeholder="IFSC Code"
                      class="break-line"/>
         <BModal id="bank_account_no"
                 centered
@@ -45,9 +52,10 @@ export default {
   methods: {
     accountSelected(account) {
       this.$emit('update', {
-        bank_account_no: account.account_no,
+        bank_account_no: account.bank_account_no,
         bank_name: account.bank_name,
         bank_account_id: account.id,
+        bank_ifsc_code: account.bank_ifsc_code,
       });
       this.$bvModal.hide('bank_account_no');
     },

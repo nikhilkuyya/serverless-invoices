@@ -3,6 +3,9 @@
         <div class="col-12 scrollbar invoice-container">
             <div class="card bg-base dp--02 invoice-box" v-if="invoice">
                 <div class="card-body">
+                    <div class="row">
+                      <h2 class="invoice-heading">Tax Invoice</h2>
+                    </div>
                     <div class="row mb-5">
                         <InvoiceCompanyDetails :invoice="invoice" :errors="errors" @update="updateProp"
                                                class="col-6 "/>
@@ -12,12 +15,12 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                          <span> <strong>Client</strong> </span>
+                          <span class="client-heading"> Buyer </span>
                           <InvoiceClientDetails :invoice="invoice" :client="invoice.client" :errors="errors"  is-consignee="" @update="updateProp"
                                                />
                         </div>
                         <div class="col-6 text-right mb-2">
-                          <span> <strong>Consignee </strong></span>
+                          <span class="client-heading"> Consignee </span>
                           <InvoiceClientDetails :invoice="invoice" :errors="errors" :client="invoice.consignee" is-consignee="true" @update="updateProp"
                                               />
                         </div>
@@ -51,6 +54,21 @@
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.client-heading {
+  font-size: 1rem;
+}
+
+.invoice-heading {
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.card-body {
+  padding-left:3rem;
+}
+</style>
+
 <script>
 import { mapGetters, mapState } from 'vuex';
 import InvoiceRow from '@/components/invoices/InvoiceRow';

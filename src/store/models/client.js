@@ -8,7 +8,6 @@ export default class Client extends Model {
   static entity = 'clients';
 
   static fields() {
-    
     return {
       id: this.attr(() => uuidv4()),
       company_name: this.attr(''),

@@ -25,7 +25,7 @@ module.exports = {
     'import/extensions': 'off',
     'linebreak-style': ['off'],
     'object-shorthand': 'off',
-    'import/no-cycle': 'off'
+    'import/no-cycle': 'off',
   },
   parserOptions: {
     parser: 'babel-eslint',
