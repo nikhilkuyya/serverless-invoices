@@ -45,7 +45,7 @@ export default {
       taxes: 'invoiceRows/taxes',
     }),
     taxTotal() {
-      return Object.values(this.invoice.taxes).reduce((taxTotal, taxObject) => { return taxTotal + taxObject.total; }, 0);
+      return Object.values(this.invoice.taxes).reduce((taxTotal, taxObject) => taxTotal + taxObject.total, 0);
     },
     colspan() {
       // return 5 + this.taxes.length;
