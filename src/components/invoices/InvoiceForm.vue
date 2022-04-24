@@ -49,6 +49,11 @@
                         <InvoiceContactDetails :invoice="invoice" :errors="errors" @update="updateProp"
                                                class="col-4 text-right"/>
                     </div>
+                    <div class="row">
+                      <InvoiceDisclaimerDetails class="col-4" />
+                      <InvoiceConsigneeSignature class="col-4"/>
+                      <InvoiceClientSignature class="col-4"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,6 +87,9 @@ import AppEditable from '@/components/form/AppEditable';
 // import TeamLogo from '@/components/team/TeamLogo';
 import InvoiceRowsHeader from '@/components/invoices/InvoiceRowsHeader';
 import InvoiceAddRowBtn from '@/components/invoices/InvoiceAddRowBtn';
+import InvoiceDisclaimerDetails from '@/components/invoices/InvoiceDisclaimerDetails';
+import InvoiceClientSignature from '@/components/invoices/InvoiceClientSignature';
+import InvoiceConsigneeSignature from '@/components/invoices/InvoiceConsigneeSignature';
 
 export default {
   i18nOptions: { namespaces: 'invoice-form' },
@@ -97,6 +105,9 @@ export default {
     InvoiceRowsHeader,
     InvoiceClientDetails,
     AppEditable,
+    InvoiceDisclaimerDetails,
+    InvoiceConsigneeSignature,
+    InvoiceClientSignature,
   },
   computed: {
     ...mapState({
