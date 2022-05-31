@@ -1,5 +1,6 @@
 <template>
     <div>
+        <strong><h6 class="heading"> Bank Details </h6></strong>
         <strong>
             <AppEditable :value="invoice.bank_name"
                          v-b-modal.bank_name
@@ -7,7 +8,7 @@
                          :disabled="true"
                          field="bank_name"
                          :placeholder="$t('bank_name')"
-                         class="break-line"/>
+                         class="break-line heading"/>
         </strong>
         <AppEditable :value="invoice.bank_account_no"
                      v-b-modal.bank_account_no
@@ -62,3 +63,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.heading {
+  font-size: 1.1rem;
+}
+</style>

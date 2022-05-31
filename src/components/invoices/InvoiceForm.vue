@@ -50,8 +50,8 @@
                                                class="col-4 text-right"/>
                     </div>
                     <div class="row">
-                      <InvoiceDisclaimerDetails class="col-4" />
                       <InvoiceConsigneeSignature class="col-4"/>
+                      <InvoiceDisclaimerDetails class="col-4" />
                       <InvoiceClientSignature class="col-4"/>
                     </div>
                 </div>
