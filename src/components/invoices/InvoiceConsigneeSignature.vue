@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>{{heading}} {{client.company_name}}</h4>
+    <h4>{{heading}} {{client && client.company_name}}</h4>
     <p class="signature-space">
     </p>
   </div>

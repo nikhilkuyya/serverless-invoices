@@ -51,7 +51,7 @@
                     </div>
                     <div class="row">
                       <InvoiceConsigneeSignature class="col-4"/>
-                      <InvoiceDisclaimerDetails class="col-4" />
+                      <div class="col-4"></div>
                       <InvoiceClientSignature class="col-4"/>
                     </div>
                 </div>
@@ -87,7 +87,6 @@ import AppEditable from '@/components/form/AppEditable';
 // import TeamLogo from '@/components/team/TeamLogo';
 import InvoiceRowsHeader from '@/components/invoices/InvoiceRowsHeader';
 import InvoiceAddRowBtn from '@/components/invoices/InvoiceAddRowBtn';
-import InvoiceDisclaimerDetails from '@/components/invoices/InvoiceDisclaimerDetails';
 import InvoiceClientSignature from '@/components/invoices/InvoiceClientSignature';
 import InvoiceConsigneeSignature from '@/components/invoices/InvoiceConsigneeSignature';
 
@@ -105,7 +104,6 @@ export default {
     InvoiceRowsHeader,
     InvoiceClientDetails,
     AppEditable,
-    InvoiceDisclaimerDetails,
     InvoiceConsigneeSignature,
     InvoiceClientSignature,
   },
