@@ -4,6 +4,7 @@ export function formatCurrencyWithDinero(value, factor = 10 ** 2) {
   if (Number.isNaN(Number(value))) {
     return "";
   }
+  console.trace('formatCurrency', { value });
   const amount = Number.parseFloat(value).toFixed(2) * factor;
   const dineroObject = Dinero({ amount: amount, currency: "INR" });
   const dineroAmount = dineroObject.toRoundedUnit(2);
