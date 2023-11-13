@@ -8,19 +8,19 @@
         <td :colspan="colspan">
             {{ tax.label }} ({{ tax.rate }}%)
         </td>
-        <td class="currency-readable">{{ tax.total | dineroCurrency }}</td>
+        <td class="currency-readable">{{  tax.total | dineroCurrency }}</td>
     </tr>
     <tr class="text-right">
       <td :colspan="colspan">
         {{ $t('tax_total')  }}
       </td>
-      <td class="currency-readable">{{ taxTotal | dineroCurrency }}</td>
+      <td class="currency-readable">{{ taxTotal | dineroCurrency   }}</td>
     </tr>
-    <tr class="text-right">
-        <th :colspan="colspan">
+    <tr class="text-right" v-if="invoice.total">
+        <th :colspan="colspan" >
             {{ $t('total') }}
         </th>
-        <th class="text-nowrap currency-readable">{{ invoice.total | dineroCurrency }}</th>
+        <th class="text-nowrap currency-readable">{{ invoice.total | dineroCurrency}}</th>
     </tr>
     </tfoot>
 </template>

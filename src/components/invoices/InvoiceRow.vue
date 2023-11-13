@@ -56,7 +56,7 @@
     </td>
     <td>
       <AppEditable
-        :value="row.price | dineroCurrency"
+        :value="row.price | currency"
         :errors="errors"
         :field="`rows.${index}.price`"
         :placeholder="$t('enter_price')"
