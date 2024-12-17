@@ -81,14 +81,14 @@
 </template>
 
 <script>
-import { formatCurrency } from "../../filters/currency.filter";
-import { formatCurrencyWithDinero } from "../../filters/dineroCurrency.filter";
-import AppEditable from "../form/AppEditable";
+import { formatCurrency } from '../../filters/currency.filter';
+import { formatCurrencyWithDinero } from '../../filters/dineroCurrency.filter';
+import AppEditable from '../form/AppEditable';
 
 export default {
-  props: ["row", "errors", "index"],
-  name: "InvoiceRow",
-  i18nOptions: { namespaces: "invoice-row" },
+  props: ['row', 'errors', 'index'],
+  name: 'InvoiceRow',
+  i18nOptions: { namespaces: 'invoice-row' },
   components: {
     AppEditable,
   },
@@ -98,21 +98,21 @@ export default {
   },
   methods: {
     updateProp(props) {
-      this.$store.dispatch("invoiceRows/updateInvoiceRow", {
+      this.$store.dispatch('invoiceRows/updateInvoiceRow', {
         props,
         id: this.row.id,
         invoiceId: this.row.invoice_id,
       });
     },
     updateTaxProp(props, tax) {
-      this.$store.dispatch("invoiceRows/updateInvoiceRowTax", {
+      this.$store.dispatch('invoiceRows/updateInvoiceRowTax', {
         props,
         invoiceId: this.row.invoice_id,
         taxId: tax.id,
       });
     },
     async removeRow(row) {
-      await this.$store.dispatch("invoiceRows/removeRow", row.id);
+      await this.$store.dispatch('invoiceRows/removeRow', row.id);
       this.updateProp();
     },
   },

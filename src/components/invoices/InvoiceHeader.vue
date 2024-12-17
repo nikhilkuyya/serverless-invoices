@@ -55,23 +55,23 @@
   </div>
 </template>
 <script>
-import { BModal, VBModal } from "bootstrap-vue";
-import AppEditable from "@/components/form/AppEditable";
-import AppDatePicker from "@/components/form/AppDatePicker";
-import { formatDate } from "@/filters/date.filter";
-import { formatCurrency } from "@/filters/currency.filter";
-import { formatCurrencyWithDinero } from "@/filters/dineroCurrency.filter";
+import { BModal, VBModal } from 'bootstrap-vue';
+import AppEditable from '@/components/form/AppEditable';
+import AppDatePicker from '@/components/form/AppDatePicker';
+import { formatDate } from '@/filters/date.filter';
+import { formatCurrency } from '@/filters/currency.filter';
+import { formatCurrencyWithDinero } from '@/filters/dineroCurrency.filter';
 
 export default {
-  i18nOptions: { namespaces: "invoice-header" },
-  props: ["invoice", "errors"],
+  i18nOptions: { namespaces: 'invoice-header' },
+  props: ['invoice', 'errors'],
   components: {
     AppEditable,
     AppDatePicker,
     BModal,
   },
   directives: {
-    "b-modal": VBModal,
+    'b-modal': VBModal,
   },
   filters: {
     date: formatDate,
@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     updateProp(props) {
-      this.$emit("update", props);
+      this.$emit('update', props);
     },
   },
 };
