@@ -47,15 +47,15 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import { formatDate } from "@/filters/date.filter";
-import EmptyState from "@/components/EmptyState";
-import { formatCurrency } from "@/filters/currency.filter";
-import dayjs from "dayjs";
-import { VBTooltip } from "bootstrap-vue";
+import { mapGetters } from 'vuex';
+import { formatDate } from '@/filters/date.filter';
+import EmptyState from '@/components/EmptyState';
+import { formatCurrency } from '@/filters/currency.filter';
+import dayjs from 'dayjs';
+import { VBTooltip } from 'bootstrap-vue';
 
 export default {
-  i18nOptions: { namespaces: ["invoices-list", "statuses"] },
+  i18nOptions: { namespaces: ['invoices-list', 'statuses'] },
   components: {
     EmptyState,
   },
@@ -64,26 +64,26 @@ export default {
     currency: formatCurrency,
   },
   directives: {
-    "b-tooltip": VBTooltip,
+    'b-tooltip': VBTooltip,
   },
   computed: {
     ...mapGetters({
-      invoices: "invoices/all",
+      invoices: 'invoices/all',
     }),
   },
   mounted() {
-    this.$store.dispatch("invoices/getInvoices");
+    this.$store.dispatch('invoices/getInvoices');
   },
   methods: {
     openInvoice(invoice) {
-      this.$store.commit("invoices/invoiceId", invoice.id);
+      this.$store.commit('invoices/invoiceId', invoice.id);
       this.$router.push({
-        name: "invoice",
+        name: 'invoice',
         params: { id: invoice.id },
       });
     },
     isOverDue(invoice) {
-      return invoice.status === "sent" && invoice.due_at < dayjs().format();
+      return invoice.status === 'sent' && invoice.due_at < dayjs().format();
     },
   },
 };
