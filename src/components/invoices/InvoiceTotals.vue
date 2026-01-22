@@ -32,10 +32,10 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import Dinero from 'dinero.js';
 import { formatDate } from '../../filters/date.filter';
 import { formatCurrency } from '../../filters/currency.filter';
 import { formatCurrencyWithDinero } from '../../filters/dineroCurrency.filter';
-import Dinero from 'dinero.js';
 
 
 export default {
