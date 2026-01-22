@@ -44,7 +44,9 @@ export default {
     placeholder: {},
     size: {},
     labelClasses: {},
-    inputClasses: {},
+    inputClasses: {
+      default: [],
+    },
     containerClasses: {},
     autocomplete: {
       default: 'on',
