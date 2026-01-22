@@ -5,8 +5,8 @@
              ref="button"
              :tabindex="tabindex"
              @click="toggleOpen">
-            <span v-if="!value">{{ $t('client') }}</span>
-            <span v-else class="client-name">{{ value }}</span>
+            <span v-if="!value" class="d-print-none">{{ $t('client') }}</span>
+            <span v-else>{{ value }}</span>
         </div>
         <div class="search-popover__overlay" v-if="isOpen" @click="toggleOpen"></div>
         <VueAutosuggest
