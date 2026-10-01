@@ -49,6 +49,15 @@
     "vue-template-compiler": "^2.5.21"
   },
   "engines": {
-    "node": "^16.18.0"
+    "node": "^24"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "bootstrap-vue@2.23.1": true,
+    "yorkie@2.0.0": true,
+    "core-js@3.50.0": true,
+    "core-js@2.6.12": true,
+    "ejs@2.7.4": true,
+    "fsevents@2.3.3": true
   }
 }
